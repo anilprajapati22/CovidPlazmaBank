@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+
+<!--Donner  	--> 
+<div class="container py-5">
+	<form method="POST">
+		{% csrf_token %}
+		<div class="loginfrm">
+			<div class="logname">
+				<h1>Donate Blood</h1>
+			</div>
+
+			<div class="row">
+				<p>Plase choose Date After : {{Ddate}}</p>
+			</div>
+
+			{% if text %}
+			<div class="row">
+				<p>{{text}} {{Ddate}}</p>
+			</div>
+			{%endif%}
+
+			<input type="hidden" value="{{request.user.id}}" name="id1" >
+			<div class="row">
+			</br>
+				<p>Choose Date for Donate : </p>
+				<input type="date" name="DonnerData">	
+			</div>
+					
+			<div class="row">
+				<input type="submit" name="login" value="Request">
+			</div>
+		</div>
+	</form>
+	
+</div>
+
+
+{% endblock %}

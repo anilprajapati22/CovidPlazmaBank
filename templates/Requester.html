@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+
+<!--Requester--> 
+<div class="container py-5">
+	<form method="POST">
+		{% csrf_token %}	
+			<div class="loginfrm">
+			<div class="logname">
+				<h1>Donate Blood</h1>
+			</div>
+			<div class="row">
+				<tr>
+					<td>
+						<input type="text" placeholder="Fullname" name="fullname" maxlength="100" required id="id_fullname">
+					</td>
+				</tr>
+				</div>
+								<input type="hidden" value="{{request.user.id}}" name="Rid" required id="id_Rid">
+				<div class="row">
+				<tr>
+					<td>
+						<input type="number" placeholder="Contact Number" name="phone_no" required id="id_phone_no">
+					</td>
+				</tr>
+				</div>
+				<div class="row">
+					<tr>
+					<th>
+						<label for="id_is_diabitic">Is diabitic:</label>
+						<input type="checkbox" name="is_diabitic" id="id_is_diabitic">
+					</td>
+					</tr>			
+				</div>
+				<div class="row">
+				<tr>
+					<td>
+						<select name="BloodGrp" required id="id_BloodGrp">
+							<option value="" selected>Blood Group</option>
+
+							<option value="A+">A+</option>
+						
+							<option value="A-">A-</option>
+						
+							<option value="B+">B+</option>
+							
+							<option value="B-">B-</option>
+							
+							<option value="O+">O+</option>
+							
+							<option value="O-">O-</option>
+							
+							<option value="AB+">AB+</option>
+							
+							<option value="AB-">AB-</option>
+							
+						</select>
+						
+					</td>
+				</tr>
+				</div>
+				<div class="row">
+				<tr>
+					<td>
+						<input type="number" placeholder="Enter your Age" name="Age" required id="id_Age">
+					</td>
+				</tr>
+				</div>
+				<div class="row">
+				<tr>
+					<td>
+						<input type="text" placeholder="City" name="city" maxlength="50" required id="id_city">
+					</td>
+				</tr>
+				</div>
+				<div class="row">
+				<tr>
+					<td>
+						<input type="text" placeholder="State" name="state" maxlength="50" required id="id_state">
+					</td>
+				</tr>
+				</div>
+				<div class="row">
+				<input type="submit" name="login" value="Request">
+				</div>
+
+
+				
+		</div>
+		</div>
+	</form>
+	
+</div>
+
+
+{% endblock %}

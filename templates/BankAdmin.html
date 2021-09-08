@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %} 
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+{% if request.user.is_staff%}
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Phone No</th>
+    <th>Blood Grp</th>
+	<th>Age</th>
+	<th>Is_diabetic</th>
+	<th>Secret </th>
+	<th>Recevied</th>
+	<th></th>	
+  </tr>
+  
+  <p style={color:"red"}>
+	{{Perror}}
+  </p>
+  
+  {% for i in DonnerData %}
+	  <form method="POST">
+	  {% csrf_token %}
+	  <input type="hidden" name="id1" value="{{i.id}}">
+	  <input type="hidden" name="fullname" value="{{i.fullname}}">
+	  <input type="hidden" name="Did" value="{{i.Did_id}}">  
+	<tr>	
+		<td>{{i.fullname}}</td>
+		<td>{{i.phone_no}}</td>
+		<td>{{i.BloodGrp}}</td>
+		<td>{{i.Age}}</td>
+		<td>
+		{% if i.is_diabitic %}
+			Yes
+		{%else%}
+			No
+		{%endif%}	
+		
+		</td>
+		<td>
+			<input type="text" name="Secret" placeholder="Secret">
+		</td>
+		<td>
+
+		{% if i.is_recived_by_bank %}
+			Yes
+		{%else%}
+			No
+		{%endif%}	
+
+		</td>
+		<td>
+			<input type="submit" name="login" value="Recevied">
+		</td>
+		</form>
+		
+	</tr>
+	{%endfor%}
+</table>
+
+{%else%}
+
+<h1> You are not authorize to see this page.</h1>
+
+
+{%endif%}
+{% endblock %}

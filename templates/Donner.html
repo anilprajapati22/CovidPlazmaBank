@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+
+
+<!--Donner  	--> 
+<div class="container py-5">
+	<form method="POST">
+		{% csrf_token %}
+			<div class="loginfrm">
+			<div class="logname">
+				<h1>Donate Blood</h1>
+				{%if Emess%}
+				<div class="row">
+					<p> {{Emess}}</p>
+				</div>
+				{%endif%}	
+			</div>
+			<div class="row">
+				<tr>
+					<td>
+						<input type="text" placeholder="Fullname" name="fullname" maxlength="100" required id="id_fullname">
+					</td>
+				</tr>
+				</div>
+								<input type="hidden" value="{{request.user.id}}" name="Did" required id="id_Did">
+				<div class="row">
+				<tr>
+					<td>
+						<input type="number" placeholder="Contact Number" name="phone_no" required id="id_phone_no">
+					</td>
+				</tr>
+				</div>
+				<div class="row">
+					<tr>
+					<th>
+						<label for="id_is_diabitic">Is diabitic:</label>
+						<input type="checkbox" name="is_diabitic" id="id_is_diabitic">
+					</td>
+					</tr>			
+				</div>
+				<div class="row">
+				<tr>
+					<td>
+						<select name="BloodGrp" required id="id_BloodGrp">
+							<option value="" selected>Blood Group</option>
+
+							<option value="A+">A+</option>
+						
+							<option value="A-">A-</option>
+						
+							<option value="B+">B+</option>
+							
+							<option value="B-">B-</option>
+							
+							<option value="O+">O+</option>
+							
+							<option value="O-">O-</option>
+							
+							<option value="AB+">AB+</option>
+							
+							<option value="AB-">AB-</option>
+							
+						</select>
+						
+					</td>
+				</tr>
+				</div>
+				<div class="row">
+				<tr>
+					<td>
+						<input type="number" placeholder="Enter your Age" name="Age" required id="id_Age">
+					</td>
+				</tr>
+				</div>
+				<div class="row">
+				<tr>
+					<th>
+				
+					</th>
+					<td>
+						<select name="Bid" required id="id_Bid">
+							<option value="" selected>Blood Bank</option>
+						{% for i in Blist %}
+							<option value={{i.0}}>{{i.1}}</option>
+						{% endfor %}
+						</select>
+					</td>
+				</tr>
+				</div>
+				<br/><br/>
+		
+				<div class="row">
+				<tr>
+					<td>
+						<input type="date" placeholder="date" name="donnate_date" required id="id_donnate_date">
+					</td>
+				</tr>
+				</div>
+				<input type="hidden"  name="Secret" value="{{SecVal}}">
+		
+		
+		
+				<div class="row">
+					<input type="submit" name="login" value="Request">
+				</div>
+		</div>
+	</form>
+	
+</div>
+
+
+{% endblock %}

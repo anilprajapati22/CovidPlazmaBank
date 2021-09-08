@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+
+</style>
+<div class="bgimage"></div>
+<h1>{{text}} </b>{{Ddate}}</b></h1>
+
+{%if SecVal %}
+<h1> please save this Secret : <b> {{SecVal}} </b> </h1>
+
+{% endif%}
+{% endblock %}
