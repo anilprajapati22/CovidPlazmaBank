@@ -1,0 +1,8 @@
+[Unit]
+Description=this servie is for running the django website
+
+[Service]
+ExecStart=python3 /CovidPlazmaBank/manage.py runserver 0.0.0.0:8080
+
+[Install]
+WantedBy=multi-user.target
