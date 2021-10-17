@@ -50,10 +50,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'CovidPlazmaBank.urls'
 
+#'DIRS': ["/CovidPlazmaBank/templates"],
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["/CovidPlazmaBank/templates"],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
