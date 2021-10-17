@@ -54,7 +54,7 @@ ROOT_URLCONF = 'CovidPlazmaBank.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': ["/CovidPlazmaBank/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
