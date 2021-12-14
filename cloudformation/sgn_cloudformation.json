@@ -1,0 +1,115 @@
+{
+    "Description": "Creates ASG with Specified Min, Max, and desired capacity in each specified subnet",
+    "Parameters": {
+        "MaxSizeASG": {
+            "Description": "Enter the Max Size for the ASG",
+            "Type": "String"
+        },
+        "MinSizeASG": {
+            "Description": "Enter the Min Size for the ASG",
+            "Type": "String"
+        },
+        "DesiredCapacityASG": {
+            "Description": "Enter the desired capacity for the ASG",
+            "Type": "String"
+        },
+        "VPCZoneIdentifier": {
+            "Description": "List the Subnet Ids of the instances",
+            "Type": "List<AWS::EC2::Subnet::Id>"
+        },
+        "KeyName": {
+            "Description": "EC2 instance key name",
+            "Type": "String"
+        },
+        "InstanceType": {
+            "Description": "EC2 instance type",
+            "Type": "String"
+        },
+        "InstanceSecurityGroup": {
+            "Description": "List of Security Group IDs",
+            "Type": "List<AWS::EC2::SecurityGroup::Id>"
+        }
+    },
+    "Mappings": {
+        "RegionMap": {
+            "us-east-1": {
+                "HVM64": "ami-0ff8a91507f77f867"
+            },
+            "us-west-1": {
+                "HVM64": "ami-0bdb828fd58c52235"
+            },
+            "ap-south-1": {
+                "HVM64": "ami-0c1a7f89451184c8b"
+            }
+        }
+    },
+    "Resources": {
+        "AutoScalingGroup": {
+            "Type": "AWS::AutoScaling::AutoScalingGroup",
+            "Properties": {
+                "AutoScalingGroupName": "Garretts Cfn Autoscaling Group",
+                "Cooldown": 120,
+                "DesiredCapacity": {
+                    "Ref": "DesiredCapacityASG"
+                },
+                "LaunchConfigurationName": "GarrettCfnLaunchConfiguration",
+                "MaxSize": 4,
+                "MinSize": 2,
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "Garretts Cfn ASG",
+                        "PropagateAtLaunch": "true"
+                    }
+                ],
+                "VPCZoneIdentifier": {
+                    "Ref": "VPCZoneIdentifier"
+                }
+            }
+        },
+        "LaunchConfig": {
+            "Type": "AWS::AutoScaling::LaunchConfiguration",
+            "Properties": {
+                "KeyName": {
+                    "Ref": "KeyName"
+                },
+                "ImageId": {
+                    "Fn::FindInMap": [
+                        "RegionMap",
+                        {
+                            "Ref": "AWS::Region"
+                        },
+                        "HVM64"
+                    ]
+                },
+                "SecurityGroups": {
+                    "Ref": "InstanceSecurityGroup"
+                },
+                "InstanceType": {
+                    "Ref": "InstanceType"
+                },
+                "LaunchConfigurationName": "GarrettCfnLaunchConfiguration",
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Sub": "#!/bin/bash\nsudo su\nsudo apt update\nsudo apt install python3 python3-pip git sqlite sqlite3 unzip curl -y\ncurl \"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\" -o \"awscliv2.zip\"\nunzip awscliv2.zip\nsudo ./aws/install\n\n          \n"
+                    }
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "AutoscalingGroup": {
+            "Description": "The newly created asg",
+            "Value": {
+                "Ref": "AutoScalingGroup"
+            }
+        },
+        "LaunchConfig": {
+            "Description": "the newly created launch config",
+            "Value": {
+                "Ref": "LaunchConfig"
+            }
+        }
+    },
+    "AWSTemplateFormatVersion": "2010-09-09"
+}

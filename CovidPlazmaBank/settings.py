@@ -50,7 +50,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'CovidPlazmaBank.urls'
 
-#'DIRS': ["/CovidPlazmaBank/templates"],
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -74,24 +74,34 @@ WSGI_APPLICATION = 'CovidPlazmaBank.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 import os
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 
-#DATABASES = {'default': {
-#            'ENGINE': 'django.db.backends.mysql',
-#            'NAME': 'sgndb',
-#            'USER': 'sgnroot',
-#            'PASSWORD': 'sgnons#0123jkhjamjbm',
-#            'HOST': 'sgndb.clbq945ylvcp.ap-south-1.rds.amazonaws.com',
-#            'PORT': '3306',
-#           }
-#        }
+DATABASES = {'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'sgndb',
+            'USER': 'sgnroot',
+            'PASSWORD': 'sgnons#0123jkhjamjbm',
+            'HOST': 'sgndb.c6ng9gwzxup7.ap-south-1.rds.amazonaws.com',
+            'PORT': '3306',
+           }
+        }
+
+# DATABASES = {'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': 'sgndb',
+#             'USER': 'yash',
+#             'PASSWORD': 'yashpendal',
+#             'HOST': 'aauusy4u4i0olb.clbq945ylvcp.ap-south-1.rds.amazonaws.com',
+#             'PORT': '3306',
+#            }
+#         }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

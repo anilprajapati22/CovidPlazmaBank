@@ -14,7 +14,7 @@ from html2image import Html2Image
 from bs4 import BeautifulSoup as bs
 import re
 from django.contrib.auth.models import User
-queue_url = 'https://sqs.ap-south-1.amazonaws.com/973982753908/SgnCovidPlazmaSQS'
+queue_url = 'https://sqs.ap-south-1.amazonaws.com/663274486810/sgnCovidPlazmaBankSQS'
 
 #name@#0123
 
@@ -29,8 +29,8 @@ def GetSecret():
                              string.digits, k = 7))
 
 def getAuthenticateEmail(email):
-	sqs = boto3.client('sqs')
-
+	sqs = boto3.client('sqs',region_name='ap-south-1')
+	
 
 
 	# Send message to SQS queue
@@ -76,7 +76,7 @@ def getBankList():
     return l    
 
 def callSQS(Secret,email,Ddate,Baddress):
-	sqs = boto3.client('sqs')
+	sqs = boto3.client('sqs',region_name='ap-south-1')
 
 	#queue_url = 'https://sqs.ap-south-1.amazonaws.com/675270067251/SgnCovidPlazmaSQS'
 
@@ -132,7 +132,7 @@ def Donner(request):
 		newdate = datetime.date(int(donnatedate[0]),int(donnatedate[1]),int(donnatedate[2]))
 		print("\n\n",donnatedate)           
 		newdate=relativedelta( newdate , datetime.datetime.today())
-		print(newdate.years ,"   ",newdate.days )            
+		print(newdate.years ,"   ",newdate.days)            
 		if  newdate.years < -1 or newdate.months < -1 or newdate.days < -1:
 			return render (request=request, template_name="Donner.html", context={"register_form":form,
 																	"isShow":False,
@@ -198,7 +198,7 @@ def is_donner_already_donated(request):
 				addBlood.save()      
 				#call sqs      
 				callSQS(addBlood.Secret,request.user.email,request.POST['DonnerData'],addBlood.Bid)
-				return render(request,'home.html',context={"text":"Thank You For Donation Plase Save Secret" ,
+				return render(request,'home.html',context={"text":"Thank You For Donation Please Save Secret" ,
                                                             "Ddate" :addBlood.Secret})
                 
 			else:
@@ -256,7 +256,7 @@ def RequesterBloodIsAvailable(request):
 def SendBankCertificate(fullname,Did):
 	u1 = User.objects.get(id=Did)
 	email = u1.email
-	sqs = boto3.client('sqs')
+	sqs = boto3.client('sqs',region_name='ap-south-1')
 
 	#queue_url = 'https://sqs.ap-south-1.amazonaws.com/675270067251/SgnCovidPlazmaSQS'
 
@@ -288,7 +288,7 @@ def SendBankCertificate(fullname,Did):
 #		save_as=new_png,
 #		size=(750, 563)
 #	)            
-	response = s3_client.upload_file(new_file_name, "covid-plazma-bank", new_file_name)
+	response = s3_client.upload_file(new_file_name, "yashtherudra", new_file_name)
 	print("\n\nfile uploaded")
 	response = sqs.send_message(
 		QueueUrl=queue_url,

@@ -1,0 +1,23 @@
+"/etc/systemd/system/sgnapp.service":{
+    "content" : { "Fn::Join" : ["\n", [
+        "[Unit]\n",
+        "Description=this servie is for running the django website\n",
+        "[Service]\n",
+        "ExecStart=python3 /home/ubuntu/CovidPlazmaBank/manage.py runserver 0.0.0.0:80\n",
+        "[Install]\n",
+        "WantedBy=multi-user.target\n"
+      ]]},
+      "mode"    : "000644",
+      "owner"   : "root",
+      "group"   : "root"
+
+  },
+
+
+  "curl 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip' -o 'awscliv2.zip'\n",  
+  "unzip awscliv2.zip\n",
+  "sudo ./aws/install\n",
+  "cd /home/ubuntu/\n",
+  "git clone https://github.com/anilprajapati22/CovidPlazmaBank.git\n",
+  "cd CovidPlazmaBank\n",
+  "pip3 install -r requirements.txt\n", 

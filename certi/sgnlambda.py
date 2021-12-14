@@ -9,6 +9,7 @@ def lambda_handler(event, context):
     is_secret=event['Records'][0]['messageAttributes']['is_secret']['stringValue']    
 
     if is_secret == "no":
+        #to send 1st time verification while register user
         ses = boto3.client('ses')
         response = ses.verify_email_identity(
         EmailAddress = email
@@ -21,6 +22,7 @@ def lambda_handler(event, context):
         )
         print(response)	
     elif is_secret == "yes":
+        #now it's sending code
         Secret=event['Records'][0]['messageAttributes']['Secret']['stringValue']
         email=event['Records'][0]['messageAttributes']['email']['stringValue']
         Ddate=event['Records'][0]['messageAttributes']['Ddate']['stringValue']
@@ -29,7 +31,7 @@ def lambda_handler(event, context):
     
         # Replace recipient@example.com with a "To" address. If your account 
         # is still in the sandbox, this address must be verified.
-        RECIPIENT = email
+        RECIPIENT = email 
         
         # Specify a configuration set. If you do not want to use a configuration
         # set, comment the following variable, and the 
@@ -129,7 +131,7 @@ def lambda_handler(event, context):
                      "AWS SDK for Python (Boto)."
                     )
                     
-        filename = "https://s3-prac5-bucket.s3.ap-south-1.amazonaws.com/"+filename            
+        filename = "https://yashtherudra.s3.ap-south-1.amazonaws.com/"+filename            
         # The HTML body of the email.
         BODY_HTML = """<html>
         <head></head>
