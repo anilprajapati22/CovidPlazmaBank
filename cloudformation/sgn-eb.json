@@ -18,9 +18,9 @@
                 "Description": "AWS ElasticBeanstalk Sample Application Version",
                 "SourceBundle": {
                     "S3Bucket": {
-                        "Fn::Sub": "yashtherudra"
+                        "Fn::Sub": "sgncovidplazmabank"
                     },
-                    "S3Key": "sgnapp_02_nov_mysql.zip"
+                    "S3Key": "sgnCovidPlazmaBank-12-dec.zip"
                 }
             }
         },
@@ -55,7 +55,7 @@
                         }
                     }
                 ],
-                "SolutionStackName": "64bit Amazon Linux 2 v3.3.6 running Python 3.8"
+                "SolutionStackName": "64bit Amazon Linux 2 v3.3.8 running Python 3.8"
             }
         },
         "sampleEnvironment": {
