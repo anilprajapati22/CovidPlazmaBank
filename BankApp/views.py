@@ -31,8 +31,6 @@ def GetSecret():
 def getAuthenticateEmail(email):
 	sqs = boto3.client('sqs',region_name='ap-south-1')
 	
-
-
 	# Send message to SQS queue
 	response = sqs.send_message(
 		QueueUrl=queue_url,
@@ -141,6 +139,7 @@ def Donner(request):
 																	"Emess":"Please choose date correctly"})    
 
 		print("for save")
+		print(request)
 		if form.is_valid():
 			print("\n\n\n sgn 1")
 			form.save()
@@ -165,7 +164,8 @@ def Donner(request):
                                                                             "isShow":False,
                                                                             "Blist":getBankList(),
                                                                             "SecVal":GetSecret(),
-																			"form":form},
+																			"form":form,
+																			"errormessage":"Appointment is not successful"},
 																			)    
 
 

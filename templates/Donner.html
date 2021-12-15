@@ -6,6 +6,9 @@
 
 <!--Donner  	--> 
 <div class="container py-5">
+	{%if errormessage %}
+	<h1>{{errormessage}}</h1>
+	{%endif%}
 	<form method="POST">
 		{% csrf_token %}
 			<div class="loginfrm">
