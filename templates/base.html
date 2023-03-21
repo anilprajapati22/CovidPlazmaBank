@@ -110,7 +110,6 @@
 			{% if request.user.is_staff%}	
 				<h1><a href="{% url 'BankAdminPage' %}" class="navbar-brand text-light"> <b>&nbsp;&nbsp;Admin </b></a></h1>  
 			{%else%}	
-				<h1><a href="{% url 'Requester' %}" class="navbar-brand text-light"><b>Receive</b></a></h1>
 				<h1><a href="{% url 'Donner' %}" class="navbar-brand text-light"> <b>Donate</b>  </a></h1> 
 
 			{%endif%}	
