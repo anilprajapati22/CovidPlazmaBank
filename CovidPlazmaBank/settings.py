@@ -74,24 +74,24 @@ WSGI_APPLICATION = 'CovidPlazmaBank.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 import os
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 
-DATABASES = {'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'sgndb',
-            'USER': 'sgnroot',
-            'PASSWORD': 'sgnons#0123jkhjamjbm',
-            'HOST': 'sgndb.c6ng9gwzxup7.ap-south-1.rds.amazonaws.com',
-            'PORT': '3306',
-           }
-        }
+# DATABASES = {'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': 'sgndb',
+#             'USER': 'sgnroot',
+#             'PASSWORD': 'sgnons#0123jkhjamjbm',
+#             'HOST': 'sgndb.c6ng9gwzxup7.ap-south-1.rds.amazonaws.com',
+#             'PORT': '3306',
+#            }
+#         }
 
 # DATABASES = {'default': {
 #             'ENGINE': 'django.db.backends.mysql',

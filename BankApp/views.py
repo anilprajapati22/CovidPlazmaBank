@@ -14,7 +14,7 @@ from html2image import Html2Image
 from bs4 import BeautifulSoup as bs
 import re
 from django.contrib.auth.models import User
-queue_url = 'https://sqs.ap-south-1.amazonaws.com/663274486810/sgnCovidPlazmaBankSQS'
+queue_url = 'https://sqs.us-east-1.amazonaws.com/060970635992/kevin-sqs-blood'
 
 #name@#0123
 
@@ -29,7 +29,7 @@ def GetSecret():
                              string.digits, k = 7))
 
 def getAuthenticateEmail(email):
-	sqs = boto3.client('sqs',region_name='ap-south-1')
+	sqs = boto3.client('sqs',region_name='us-east-1')
 	
 	# Send message to SQS queue
 	response = sqs.send_message(
@@ -74,7 +74,7 @@ def getBankList():
     return l    
 
 def callSQS(Secret,email,Ddate,Baddress):
-	sqs = boto3.client('sqs',region_name='ap-south-1')
+	sqs = boto3.client('sqs',region_name='us-east-1')
 
 	#queue_url = 'https://sqs.ap-south-1.amazonaws.com/675270067251/SgnCovidPlazmaSQS'
 
@@ -256,7 +256,7 @@ def RequesterBloodIsAvailable(request):
 def SendBankCertificate(fullname,Did):
 	u1 = User.objects.get(id=Did)
 	email = u1.email
-	sqs = boto3.client('sqs',region_name='ap-south-1')
+	sqs = boto3.client('sqs',region_name='us-east-1')
 
 	#queue_url = 'https://sqs.ap-south-1.amazonaws.com/675270067251/SgnCovidPlazmaSQS'
 
@@ -288,7 +288,7 @@ def SendBankCertificate(fullname,Did):
 #		save_as=new_png,
 #		size=(750, 563)
 #	)            
-	response = s3_client.upload_file(new_file_name, "yashtherudra", new_file_name)
+	response = s3_client.upload_file(new_file_name, "ak-website-ams", new_file_name)
 	print("\n\nfile uploaded")
 	response = sqs.send_message(
 		QueueUrl=queue_url,
