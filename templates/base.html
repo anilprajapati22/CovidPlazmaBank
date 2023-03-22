@@ -26,42 +26,102 @@
 	height: 950px;
     opacity: 0.7;
 }*/
-.loginfrm
-{
-	border:0px solid;
-	height: 780px;
-	position:absolute;
-	margin-top:100px;
-	display:block;
-	width:40%;
-	margin-left:30%;
-	margin-right:30%;
-	padding:20px;
-	background-color:rgba(63,63,63,0.5);
-	box-shadow:0px 0px 10px #FFFFFF;
+.auth-one-bg-position {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 380px;
 }
-.loginfrm1
-{
-	border:0px solid;
-	height: 400px;
-	position:absolute;
-	margin-top:100px;
-	display:block;
-	width:40%;
-	margin-left:30%;
-	margin-right:30%;
-	padding:20px;
-	background-color:rgba(63,63,63,0.5);
-	box-shadow:0px 0px 10px #FFFFFF;
+
+.auth-one-bg {
+   background-position: center;
+    background-size: cover;
+    background-image: radial-gradient(rgba(0, 0, 0, 0) 0%, rgb(25 75 255 / 17%) 100%), radial-gradient(rgba(0, 0, 0, 0) 33%, rgb(9 87 255 / 47%) 166%);
 }
-.logname
-{
-	border:0px solid;
-	padding:15px;
-	font-size:25px;
-	text-align:center;
-	color:#fff;
+
+#video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
+
+#video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.auth-one-bg .bg-overlay {
+    background: linear-gradient(to right, rgb(99 41 255 / 6%), rgb(120 247 40 / 18%));
+    opacity: 0.9;
+}
+
+.bg-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+    background-color: #000;
+}
+
+.auth-one-bg .shape {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.auth-one-bg .shape > svg {
+    width: 100%;
+    height: auto;
+    fill: #ecf0fa;
+}
+
+.particles-js-canvas-el {
+    position: relative;
+}
+
+.auth-page-wrapper .auth-page-content {
+    padding-bottom: 60px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.login-bg {
+    background-color: rgb(255 255 255 / 50%);
+    backdrop-filter: saturate(180%) blur(7px);
+    border: 2px solid rgb(255 255 255 / 70%);
+    box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+}
+
+.card-body {
+    box-shadow: rgb(0 0 0 / 45%) 0px 25px 20px -20px;
+}
+
+.form-label {
+    font-size: 17px;
+    font-family: calibri;
+}
+
+body {
+    background: #ecf0fa !important;
+}
+
 .row
 {
 	border:0px solid;
@@ -98,32 +158,43 @@
 </head>
 <body>
 <div>
-    <nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top">
-      <div class="container">
-        <h1><a href="{% url 'home' %}" class="navbar-brand text-light">
-        <b>&nbsp;&nbsp;Home</b></a></h1>
-
-        {% if user.is_authenticated %}
-       <h1 class="navbar-brand text-light">  <b>Hiii {{ user.username }}!</b> </h1>
-        
-
-			{% if request.user.is_staff%}	
-				<h1><a href="{% url 'BankAdminPage' %}" class="navbar-brand text-light"> <b>&nbsp;&nbsp;Admin </b></a></h1>  
-			{%else%}	
-				<h1><a href="{% url 'Donner' %}" class="navbar-brand text-light"> <b>Donate</b>  </a></h1> 
-
-			{%endif%}	
-			<h1><a href="{% url 'logout' %}" class="navbar-brand text-light"> <b>&nbsp;&nbsp;Log Out </b></a></h1>   
-		{% else%}
-        <h1><a href="{% url 'login' %}" class="navbar-brand text-light"> <b>&nbsp;&nbsp;Log In </b></a></h1>
-        {% endif %}
-        
-
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand text-danger" href="#">Covid Blood Bank System</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+	  
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav mr-auto">
+			
+		  </ul>
+		  <form class="form-inline my-2 my-lg-0">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				  <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+				{% if user.is_authenticated %}
+				<a href="{% url 'home' %}" class="nav-link text-success">  <b>Hiii {{ user.username }}!</b></a>
+				</li> 
+				<li class="nav-item ">
+					 {% if request.user.is_staff%}	
+						 <a href="{% url 'BankAdminPage' %}" class="nav-link "> <b>&nbsp;&nbsp;Admin </b></a>
+						 </li>
+					 {%else%}	
+					 <li class="nav-item ">
+						 <a href="{% url 'Donner' %}" class="nav-link "> <b>Donate</b>  </a>
+		 </li>
+					 {%endif%}	
+					 <a href="{% url 'logout' %}" class="nav-link "> <b>&nbsp;&nbsp;Log Out </b></a> 
+				 {% else%}
+				 <a href="{% url 'login' %}" class="nav-link "> <b>&nbsp;&nbsp;Log In </b></a>
+				 {% endif %}
+				</li>
+		  </form>
+		</div>
+	  </nav>
+    
 </div>
 {% block content %}
 {% endblock %}
@@ -131,7 +202,7 @@
 <!-- Footer -->
 <footer class="page-footer font-small blue fixed-bottom">
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3 bg-dark text-light">© 2021 Copyright:
+  <div class="footer-copyright text-center py-3 bg-dark text-light">© 2023 Copyright:
     <a href="" class="text-white">Covid Plasma Grp10</a>
   </div>
   <!-- Copyright -->
