@@ -113,8 +113,6 @@ def callSQS(Secret,email,Ddate,Baddress):
 	print(response['MessageId'])
 
 
-
-
 def Donner(request):
 	if request.method == "POST":
 		print("\n\n\n sgn 0")			        
@@ -334,6 +332,27 @@ def BankAdminPage(request):
                                                             "Perror":"Plase Check Secret and enter again" })			        
 
 	DonnerData = DonnerModel.objects.filter(is_recived_by_bank=0)
-	return render (request=request, template_name="BankAdmin.html", context={"DonnerData":DonnerData})    
+	return render (request=request, template_name="BankAdmin.html", context={"DonnerData":DonnerData,"is_history":True,})    
      
+def BankAdminPageHistory(request):
+	if request.method == "POST":
+		print(request.POST["Secret"],"\n\n\n")
+		print(request.POST['id1'])        
+		addBlood = DonnerModel.objects.get(id=request.POST['id1'])
+		if addBlood.Secret == request.POST['Secret']:
+			addBlood.is_recived_by_bank = True
+			addBlood.save()            
+			SendBankCertificate(request.POST['fullname'],request.POST['Did'])
+			#send email to user with certificate.            
+			DonnerData = DonnerModel.objects.filter(is_recived_by_bank=0)
+			return render (request=request, template_name="BankAdmin.html", context={"DonnerData":DonnerData})    			    
+		else:
+			DonnerData = DonnerModel.objects.filter(is_recived_by_bank=0)
+			return render (request=request, template_name="BankAdmin.html", context={"DonnerData":DonnerData,
+                                                            "Perror":"Plase Check Secret and enter again" })			        
+
+	DonnerData = DonnerModel.objects.all()
+	return render (request=request, template_name="BankAdmin.html", context={"DonnerData":DonnerData,
+									  										 "is_history":False,
+									  								})    
        

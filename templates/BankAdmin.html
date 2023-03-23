@@ -27,9 +27,13 @@ tr:nth-child(even) {
     <th>Blood Grp</th>
 	<th>Age</th>
 	<th>Is_diabetic</th>
-	<th>Secret </th>
+	{% if is_history %}
+		<th>Secret </th>
+	{%endif%}	
 	<th>Recevied</th>
-	<th></th>	
+	{% if is_history %}
+		<th></th>	
+	{%endif%}	
   </tr>
   
   <p style={color:"red"}>
@@ -55,9 +59,11 @@ tr:nth-child(even) {
 		{%endif%}	
 		
 		</td>
+		{% if is_history %}
 		<td>
 			<input type="text" name="Secret" placeholder="Secret">
 		</td>
+		{%endif%}
 		<td>
 
 		{% if i.is_recived_by_bank %}
@@ -67,9 +73,11 @@ tr:nth-child(even) {
 		{%endif%}	
 
 		</td>
+		{% if is_history %}
 		<td>
 			<input type="submit" name="login" value="Recevied">
 		</td>
+		{%endif%}
 		</form>
 		
 	</tr>
