@@ -18,10 +18,13 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 </style>
-
+<h4 class="text-center mt-5 mb-5"> 
+	History of Donner 
+</h4>
 {% if request.user.is_staff%}
-<table>
-  <tr>
+<table class="table table-stripped container ">
+	
+  <tr >
     <th>Name</th>
     <th>Phone No</th>
     <th>Blood Grp</th>
@@ -54,9 +57,9 @@ tr:nth-child(even) {
 		<td>{{i.Age}}</td>
 		<td>
 		{% if i.is_diabitic %}
-			Yes
+			<span class="text-warning"><b>Yes</b></span>
 		{%else%}
-			No
+		No
 		{%endif%}	
 		
 		</td>
@@ -68,9 +71,9 @@ tr:nth-child(even) {
 		<td>
 
 		{% if i.is_recived_by_bank %}
-			Yes
+		<span class="text-success">	<b>Yes</b></span>
 		{%else%}
-			No
+		<span class="text-danger">No</span>
 		{%endif%}	
 
 		</td>
