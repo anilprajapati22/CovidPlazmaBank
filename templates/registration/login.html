@@ -1,17 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Login Page{% endblock %}
 
 {% block content %}
 <div class="auth-page-wrapper pt-5">
   <!-- page bg -->
   <div class="auth-one-bg-position auth-one-bg" id="auth-particles">
-      <div id="video-container">
-          <video autoplay="" loop="" muted="">
-              <source src="https://vod-progressive.akamaized.net/exp=1679480811~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F3081%2F12%2F315405446%2F1218667843.mp4~hmac=64a6a08cc411bf519f5b1dee30e94b1b3d950d3d7fa77225745f28a1074a5638/vimeo-prod-skyfire-std-us/01/3081/12/315405446/1218667843.mp4" type="video/mp4" />
-          </video>
-      </div>
-
       <div class="bg-overlay"></div>
       <div class="shape">
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 120">
@@ -20,7 +14,6 @@
       </div>
       <canvas class="particles-js-canvas-el" width="1349" height="380" style="width: 100%; height: 100%;"></canvas>
   </div>
-
   <!-- page content -->
   <div class="auth-page-content">
       <div class="container">
@@ -34,19 +27,18 @@
                               </div>
                               <h3 class="text-dark mt-3">Login to Your Account</h3>
                           </div>
-                          <form method="post">
+                          <form method="POST">
                             {% csrf_token %}
                           <div class="p-2 mt-3">
                               <div class="mb-3">
                                   <label for="username" class="form-label">Username</label>
-                                  <input type="text" placeholder="User Name" name="username" maxlength="100" required id="id_username">
-            
+                                  <input type="text" placeholder="User Name" name="username" maxlength="100" required id="id_username" class="form-control">
                                 </div>
 
                               <div class="mb-3">
                                   <label class="form-label" for="password-input">Password</label>
                                   <div class="position-relative auth-pass-inputgroup mb-3">
-                                    <input type="password"placeholder="Password" name="password" maxlength="50" required id="password">
+                                    <input type="password"placeholder="Password" name="password" maxlength="50" required id="password" class="form-control">
                                     <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                   </div>
                               </div>
@@ -59,8 +51,8 @@
                               </div>
 
                               <div class="mt-4">
-                                <input type="submit" name="login" value="Login">
-                                </div>
+                                <input type="submit" name="login" value="Login" class="form-control bg-primary text-white">
+                              </div>
                           </div>
                         </form>
                       </div>

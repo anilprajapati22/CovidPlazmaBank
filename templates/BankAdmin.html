@@ -26,6 +26,7 @@ tr:nth-child(even) {
     <th>Phone No</th>
     <th>Blood Grp</th>
 	<th>Age</th>
+	
 	<th>Is_diabetic</th>
 	{% if is_history %}
 		<th>Secret </th>
@@ -36,7 +37,7 @@ tr:nth-child(even) {
 	{%endif%}	
   </tr>
   
-  <p style={color:"red"}>
+  <p class="text-danger">
 	{{Perror}}
   </p>
   
