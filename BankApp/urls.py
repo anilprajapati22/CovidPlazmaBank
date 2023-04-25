@@ -11,5 +11,6 @@ urlpatterns = [
     path("Donner", views.Donner, name="Donner"),
     path("BankAdminPage", views.BankAdminPage, name="BankAdminPage"),
     path("BankAdminPageHistory", views.BankAdminPageHistory, name='BankAdminPageHistory'),
-    path("is_donner_already_donated", views.is_donner_already_donated, name="is_donner_already_donated"),    
+    path("is_donner_already_donated", views.is_donner_already_donated, name="is_donner_already_donated"), 
+    path("send_promotional_email/<int:value>/",views.send_promotional_email, name = "send_promotional_email"),
 ]

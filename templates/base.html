@@ -127,6 +127,88 @@ body {
 	padding:10px;
 }
 
+/* Set global styles */
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+header {
+  background-color: #f44336;
+  color: white;
+  padding: 20px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #f28d81;
+}
+
+ul {
+  list-style: disc;
+  margin-left: 20px;
+}
+
+footer {
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.8em;
+}
+
+/* Media queries for responsive design */
+@media only screen and (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav li {
+    margin: 10px 0;
+  }
+}
 
 
 </style>
@@ -177,6 +259,7 @@ body {
     
 </div>
 {% block content %}
+
 {% endblock %}
 
 <!-- Footer -->
@@ -186,7 +269,7 @@ body {
      <div class="card-footer bg-light text-center text-muted">
         © 2023 Copyright:
     <a href="" class="text-danger">Cloud Based Blood Bank System</a>
-      </div>
+    </div>
  
 
   <!-- Copyright -->

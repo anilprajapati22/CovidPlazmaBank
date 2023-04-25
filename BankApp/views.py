@@ -286,7 +286,7 @@ def SendBankCertificate(fullname,Did):
 #		save_as=new_png,
 #		size=(750, 563)
 #	)            
-	response = s3_client.upload_file(new_file_name, "ak-website-ams", new_file_name)
+	response = s3_client.upload_file(new_file_name, "certi", new_file_name)
 	print("\n\nfile uploaded")
 	response = sqs.send_message(
 		QueueUrl=queue_url,
@@ -337,8 +337,8 @@ def BankAdminPage(request):
 def BankAdminPageHistory(request):
 	if request.method == "POST":
 		print(request.POST["Secret"],"\n\n\n")
-		print(request.POST['id1'])        
-		addBlood = DonnerModel.objects.get(id=request.POST['id1'])
+		print(request.POST['id2'])        
+		addBlood = DonnerModel.objects.get(id=request.POST['id2'])
 		if addBlood.Secret == request.POST['Secret']:
 			addBlood.is_recived_by_bank = True
 			addBlood.save()            
@@ -348,11 +348,42 @@ def BankAdminPageHistory(request):
 			return render (request=request, template_name="BankAdmin.html", context={"DonnerData":DonnerData})    			    
 		else:
 			DonnerData = DonnerModel.objects.filter(is_recived_by_bank=0)
-			return render (request=request, template_name="BankAdmin.html", context={"DonnerData":DonnerData,
+			return render (request=request, template_name="BankHistory.html", context={"DonnerData":DonnerData,
                                                             "Perror":"Plase Check Secret and enter again" })			        
 
 	DonnerData = DonnerModel.objects.all()
-	return render (request=request, template_name="BankAdmin.html", context={"DonnerData":DonnerData,
+	return render (request=request, template_name="BankHistory.html", context={"DonnerData":DonnerData,
 									  										 "is_history":False,
-									  								})    
+							  								})    
        
+
+def send_promotional_email(request,value):
+	print(value)
+	u1 = User.objects.get(id=value)
+	email = u1.email
+	sqs = boto3.client('sqs',region_name='us-east-1')
+
+	#queue_url = 'https://sqs.ap-south-1.amazonaws.com/675270067251/SgnCovidPlazmaSQS'
+
+	response = sqs.send_message(
+		QueueUrl=queue_url,
+		DelaySeconds=0,
+		MessageAttributes={
+			'email': {
+				'DataType': 'String',
+				'StringValue': email
+			},
+			'is_secret': {
+				'DataType': 'String',
+				'StringValue': "promotion"
+			}
+
+			},
+		MessageBody=(
+			'sgnons'
+		)
+	)
+
+	print(response['MessageId'])
+
+	return redirect("BankAdminPageHistory")

@@ -4,11 +4,34 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<style>
+<div class="row justify-content-center">
+    <div class="col-4">
+        <section id="about" class="align-self-center">
+            <img src="{% static 'Blood donation-pana.png' %}" class="w-100 "alt="Blood donation">
+          
+        </section>
+        
+    </div>
+    <div class="col-4 mt-5">
+        <section id="benefits" class="mt-5">
+            
+          <h2>About the Cloud Based Blood Bank System</h2>
+          <p>Our mission is to connect donors with those in need and make the blood donation process as seamless as possible. </p>
+            <h2>Benefits of Donating Blood</h2>
+            <ul>
+              <li>Helps save lives</li>
+              <li>Improves your own health by reducing risk of heart disease and cancer</li>
+              <li>Free health checkup including blood pressure, hemoglobin, and infectious diseases testing</li>
+            </ul>
+          </section>
+    </div>
+  </div>
 
-</style>
+<div class="bgimage">
+    
 
-<div class="bgimage"></div>
+
+</div>
 <h1>{{text}} </b>{{Ddate}}</b></h1>
 
 {%if SecVal %}

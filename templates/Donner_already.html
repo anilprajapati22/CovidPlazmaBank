@@ -1,41 +1,52 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %} 
 
 
 <!--Donner  	--> 
-<div class="container py-5">
-	<form method="POST">
-		{% csrf_token %}
-		<div class="loginfrm">
-			<div class="logname">
-				<h1>Donate Blood</h1>
-			</div>
 
-			<div class="row">
-				<p>Please choose Date on or after : {{Ddate}}</p>
-			</div>
 
-			{% if text %}
-			<div class="row">
-				<p>{{text}} {{Ddate}}</p>
-			</div>
-			{%endif%}
 
-			<input type="hidden" value="{{request.user.id}}" name="id1" >
-			<div class="row">
-			</br>
-				<p>Choose Date for Donate : </p>
-				<input type="date" name="DonnerData">	
-			</div>
-					
-			<div class="row">
-				<input type="submit" name="login" value="Request">
-			</div>
-		</div>
-	</form>
+
+
+<div class="clearfix container mt-4 mb-5">
+	<h1>Donate Blood</h1>
+	<div class="row">
+	<div class="logname col-6">
+		
+		<img src="{% static '2867045-removebg-preview.png' %}" class="w-100 float-md-end " alt="Blood donation">
+		
+	</div>
+
+	<div class="col-5 mt-5">
+		<form method="POST">
+			{% csrf_token %}
+			<div class="loginfrm mt-5">
+				
 	
+				<div class="row">
+					<p>Please choose Date on or after : {{Ddate}}</p>
+				</div>
+	
+				{% if text %}
+				<div class="row">
+					<p>{{text}} {{Ddate}}</p>
+				</div>
+				{%endif%}
+	
+				<input type="hidden" value="{{request.user.id}}" name="id1" >
+				<div class="row">
+				</br>
+					<p>Choose Date for Donate : </p>
+					<input type="date" class="form-control" name="DonnerData">	
+				</div>
+						
+				<div class="row mt-5">
+					<input type="submit" class="btn btn-primary" name="login" value="Request">
+				</div>
+			</div>
+		</form>
+	</div>
+  </div>
 </div>
-
-
 {% endblock %}
