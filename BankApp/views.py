@@ -144,7 +144,7 @@ def Donner(request):
 			#email secret values to user.            
 			callSQS(request.POST['Secret'],request.user.email,request.POST['donnate_date'],request.POST['Bid'])
 			messages.success(request, "Registration successful." )
-			return render(request,'home.html',context={"text":"Thank You for Donation",
+			return render(request,'home2.html',context={"text":"Thank You for Donation",
                                                         "SecVal":request.POST['Secret']})            
 #			B=Blood(BloodGrp=request.POST['BloodGrp'],
 #					Bid_id=request.POST['Bid'],
